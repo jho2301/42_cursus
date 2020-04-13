@@ -1,0 +1,8 @@
+{
+	"python.pythonPath": "/usr/bin/python3.6",
+	"editor.insertSpaces": true,
+	"editor.renderWhitespace": "selection",
+	"python.linting.pylintEnabled": false,
+	"python.linting.pycodestyleEnabled": false,
+	"python.linting.enabled": true,
+}
