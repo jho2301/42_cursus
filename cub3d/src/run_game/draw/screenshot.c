@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:07:26 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/05 21:06:02 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/07 21:09:31 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ typedef struct	s_bfh {
 
 typedef struct		t_bih {
 	unsigned int    size_header;
-	unsigned int    width;
-	unsigned int    height;
+	unsigned int    w;
+	unsigned int    h;
 	short int       planes;
 	short int       bit_count;
 	unsigned int    compression;
@@ -40,7 +40,7 @@ t_bfh init_bfh(t_game_info *game_info)
 	int image_size;
 	int file_size;
 
-	image_size = game_info->res[SCREEN_WIDTH] * game_info->res[SCREEN_HEIGHT];
+	image_size = game_info->res[RES_W_IDX] * game_info->res[RES_H_IDX];
 	file_size = 54 + 4 * image_size;
 	ft_memcpy(&bfh.bitmap_type, "BM", 2);
 	bfh.file_size       = file_size;
@@ -56,11 +56,11 @@ t_bih init_bih(t_game_info *game_info)
 	int image_size;
 	int file_size;
 
-	image_size = game_info->res[SCREEN_WIDTH] * game_info->res[SCREEN_HEIGHT];
+	image_size = game_info->res[RES_W_IDX] * game_info->res[RES_H_IDX];
 	file_size = 54 + 4 * image_size;
 	bih.size_header = sizeof(bih);
-	bih.width = game_info->res[SCREEN_WIDTH];
-	bih.height = -game_info->res[SCREEN_HEIGHT];
+	bih.w = game_info->res[RES_W_IDX];
+	bih.h = -game_info->res[RES_H_IDX];
 	bih.planes = 1;
 	bih.bit_count = 24;
 	bih.compression = 0;
@@ -86,7 +86,7 @@ void	take_screenshot(t_image *img, t_game_info *game_info)
 	write(image_fd, &bfh, 14);
 	write(image_fd, &bih, sizeof(bih));
 	i = -1;
-	while (++i < game_info->res[SCREEN_WIDTH] * game_info->res[SCREEN_HEIGHT])
+	while (++i < game_info->res[RES_W_IDX] * game_info->res[RES_H_IDX])
 	{
 		color[0]  = *(img->data + i) / (256 * 256);
 		color[1] = *(img->data + i) / 256;

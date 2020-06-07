@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:13:57 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/05 21:16:34 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/07 20:30:18 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	do_draw(void *mlx, void *window, t_game_info *game_info,
 {
 	t_image		img;
 	t_dda		dda;
-	double		z_buffer[game_info->res[SCREEN_WIDTH]];
+	double		z_buffer[game_info->res[RES_W_IDX]];
 
-	img.ptr = mlx_new_image(mlx, game_info->res[SCREEN_WIDTH],
-							 game_info->res[SCREEN_HEIGHT]);
+	img.ptr = mlx_new_image(mlx, game_info->res[RES_W_IDX],
+							 game_info->res[RES_H_IDX]);
 	img.data = (int *)mlx_get_data_addr(img.ptr, &img.bpp,
 										&img.sizeline, &img.endian);
 	draw_floor_ceiling(game_info, mlx, &img);
-	for(int x = 0; x < game_info->res[SCREEN_WIDTH]; x++)
+	for(int x = 0; x < game_info->res[RES_W_IDX]; x++)
 	{
 		dda = raycast(game_info, user_view, z_buffer, x);
 		draw_wall(mlx, user_view, game_info, img, dda);
 	}
-	// draw_sprites(mlx, *game_info, user_view, z_buffer);
+	draw_sprites(mlx, *game_info, user_view, &img, z_buffer);
 	if (screenshot == TRUE)
 		take_screenshot(&img, game_info);
 	mlx_put_image_to_window(mlx, window, img.ptr, 0, 0);

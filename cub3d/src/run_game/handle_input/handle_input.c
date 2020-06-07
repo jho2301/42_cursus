@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:09:04 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/05 21:08:22 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/07 22:47:22 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int		handle_input(int keycode, void **infos)
 		turn_right(user_view);
 	else if (keycode == KEY_LEFT)
 		turn_left(user_view);
-	printf("%f %f\n", user_view->pos_x, user_view->pos_y);
+	else if (keycode == KEY_ESC)
+		exit(0);
 	is_updated = FALSE;
 	return (0);
 }

@@ -47,13 +47,24 @@ typedef struct	s_game_info
 
 t_game_info		init_game_info();
 void			free_game_info(t_game_info *game_info);
-
 void			check_argc(int argc);
 void			check_cub_file(char *path);
-
 int				open_cub_file(char *path);
 t_game_info		read_cub_file(char *path);
 void			exit_with_errmsg(char *errmsg);
 char			*supreme_cat(char *dst, char *src, int size);
+char			check_type(char *line, t_game_info *game_info);
+int				set_type_info(char type, char *line, t_game_info *game_info);
+int				set_type_info_res(char *line, t_game_info *game_info);
+int				set_type_info_ceilling(char *line, t_game_info *game_info);
+int				set_type_info_floor(char *line, t_game_info *game_info);
+int				set_type_info_nswes(char type, char *line, t_game_info *game_info);
+int				get_type(int fd, t_game_info *game_info);
+char			check_type(char *line, t_game_info *game_info);
+int				get_map_widthy(int fd, t_game_info *game_info);
+int				get_map(int fd, t_game_info *game_info);
+int				check_map(t_game_info *game_info);
+
+
 
 #endif

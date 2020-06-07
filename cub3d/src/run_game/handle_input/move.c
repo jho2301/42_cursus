@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 10:35:02 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/05 20:24:16 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/07 21:22:07 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void	move_forward(t_game_info g, t_user_view *u)
 	p_y = u->pos_y;
 	d_x = u->dir_x;
 	d_y = u->dir_y;
-	if (0 < (int)(p_y + d_y) && check_move(*(*(g.map + (int)(p_y + d_y)) + (int)p_x)))
+	if (0 < (int)(p_y + d_y)
+		&& check_move(*(*(g.map + (int)(p_y + d_y)) + (int)p_x)))
 		u->pos_y += u->dir_y;
-	if (0 < (int)(p_x + d_x) && check_move(*(*(g.map + (int)p_y) + (int)(p_x + d_x))))
+	if (0 < (int)(p_x + d_x)
+		&& check_move(*(*(g.map + (int)p_y) + (int)(p_x + d_x))))
 		u->pos_x += u->dir_x;
 }
 
@@ -51,9 +53,11 @@ void	move_backward(t_game_info g, t_user_view *u)
 	p_y = u->pos_y;
 	d_x = u->dir_x;
 	d_y = u->dir_y;
-	if (0 < (int)(p_y - d_y) && check_move(*(*(g.map + (int)(p_y - d_y)) + (int)p_x)))
+	if (0 < (int)(p_y - d_y)
+		&& check_move(*(*(g.map + (int)(p_y - d_y)) + (int)p_x)))
 		u->pos_y -= u->dir_y;
-	if (0 < (int)(p_x - d_x) && check_move(*(*(g.map + (int)p_y) + (int)(p_x - d_x))))
+	if (0 < (int)(p_x - d_x)
+		&& check_move(*(*(g.map + (int)p_y) + (int)(p_x - d_x))))
 		u->pos_x -= u->dir_x;
 }
 
@@ -68,9 +72,11 @@ void	move_rightward(t_game_info g, t_user_view *u)
 	p_y = u->pos_y;
 	d_x = u->dir_x;
 	d_y = u->dir_y;
-	if (0 < (int)(p_y + d_x) && check_move(*(*(g.map + (int)(p_y + d_x)) + (int)p_x)))
+	if (0 < (int)(p_y + d_x)
+		&& check_move(*(*(g.map + (int)(p_y + d_x)) + (int)p_x)))
 		u->pos_y += u->dir_x;
-	if (0 < (int)(p_x - d_y) && check_move(*(*(g.map + (int)p_y) + (int)(p_x - d_y))))
+	if (0 < (int)(p_x - d_y)
+		&& check_move(*(*(g.map + (int)p_y) + (int)(p_x - d_y))))
 		u->pos_x -= u->dir_y;
 }
 
@@ -85,8 +91,10 @@ void	move_leftward(t_game_info g, t_user_view *u)
 	p_y = u->pos_y;
 	d_x = u->dir_x;
 	d_y = u->dir_y;
-		if (0 < (int)(p_y - d_x) && check_move(*(*(g.map + (int)(p_y - d_x)) + (int)p_x)))
+		if (0 < (int)(p_y - d_x)
+			&& check_move(*(*(g.map + (int)(p_y - d_x)) + (int)p_x)))
 			u->pos_y -= u->dir_x;
-		if (0 < (int)(p_x + d_y) && check_move(*(*(g.map + (int)p_y) + (int)(p_x + d_y))))
+		if (0 < (int)(p_x + d_y)
+			&& check_move(*(*(g.map + (int)p_y) + (int)(p_x + d_y))))
 			u->pos_x += u->dir_y;
 }
