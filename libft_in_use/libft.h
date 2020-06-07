@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:50:00 by hjeon             #+#    #+#             */
-/*   Updated: 2020/04/12 17:23:31 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/04/16 17:28:52 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		ft_strchri_bonus(const char *s, int c);
 char	*ft_lltoa_bonus(long long nbr);
 char	*ft_realloc_bonus(char *ptr, size_t size, int nmemb);
 char	*ft_super_cat_bonus(char *dst, char *src);
-int		get_next_line_bonus(int fd, char **line);
+int		get_next_line(int fd, char **line);
 
 
 

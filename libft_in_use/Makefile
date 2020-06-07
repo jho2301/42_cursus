@@ -1,4 +1,4 @@
-SRCS = ${wildcard ./*/ft_*.c}
+SRCS = ${wildcard ./*/*.c}
 OBJS = ${SRCS:.c=.o}
 NAME = libft.a
 RM = rm -f
