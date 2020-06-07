@@ -1,0 +1,33 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+	listen 443 ssl;
+	listen [::]:443 ssl;
+        server_name localhost;
+
+        root /var/www/html;
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        ssl_certificate /etc/ssl/ft_server.crt;
+        ssl_certificate_key /etc/ssl/ft_server.key;
+
+        location / {
+		try_files $uri $uri/ /index.php$is_args$args;
+        }
+
+	location = /favicon.ico { log_not_found off; access_log off; }
+ 	location = /robots.txt { log_not_found off; access_log off; allow all; }
+  	location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
+		expires max;
+		log_not_found off;
+    	}
+
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        }
+
+        location ~ /\.ht {
+                deny all;
+        }
+}
