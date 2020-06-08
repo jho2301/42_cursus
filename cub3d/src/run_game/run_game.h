@@ -3,90 +3,6 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hjeon <hjeon@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/08 10:05:28 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 10:06:34 by hjeon            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_game.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hjeon <hjeon@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/08 10:05:28 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 10:05:28 by hjeon            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_game.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hjeon <hjeon@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/08 10:05:27 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 10:05:27 by hjeon            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_game.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hjeon <hjeon@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/08 10:05:27 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 10:05:27 by hjeon            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_game.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hjeon <hjeon@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/08 10:05:26 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 10:05:26 by hjeon            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_game.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hjeon <hjeon@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/08 10:05:26 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 10:05:26 by hjeon            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_game.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hjeon <hjeon@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/08 10:05:25 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 10:05:25 by hjeon            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_game.h                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:13:12 by hjeon             #+#    #+#             */
@@ -195,10 +111,14 @@ void			take_screenshot(t_image *img, t_game_info *game_info);
 int				handle_input(int keycode, void **infos);
 int				draw(void **infos);
 void			get_user_info(t_game_info *game_info, t_user_view *user_view);
-void			draw_floor_ceiling(t_game_info *game_info, void *mlx_ptr, t_image *img);
-void			draw_wall(void *mlx, t_user_view user_view, t_game_info *game_info, t_image img, t_dda dda);
-void			draw_sprites(void *mlx, t_game_info game_info, t_user_view user_view, t_image *img, double ZBuffer[]);
-t_dda			raycast(t_game_info *game_info, t_user_view user_view, double ZBuffer[], int x);
+void			draw_floor_ceiling(t_game_info *game_info,
+									 void *mlx_ptr, t_image *img);
+void			draw_wall(void *mlx, t_user_view user_view,
+							t_game_info *game_info, void *vals[]);
+void			draw_sprites(void *ptrs[], t_game_info game_info,
+							 t_user_view user_view, double ZBuffer[]);
+t_dda			raycast(t_game_info *game_info, t_user_view user_view,
+						 double ZBuffer[], int x);
 void			move_rightward(t_game_info g, t_user_view *u);
 void			move_leftward(t_game_info g, t_user_view *u);
 void			move_backward(t_game_info g, t_user_view *u);
@@ -207,8 +127,10 @@ void			turn_right(t_user_view *u);
 void			turn_left(t_user_view *u);
 void			sort_sprites (t_sprite *sprites[], int num_sprites);
 int				get_num_sprites (t_game_info game_info);
-void			get_sprites_location(t_game_info g, t_user_view u, t_sprite **spr);
-t_spr_pos		get_camera_position(int i, t_sprite *sprites[], t_user_view u, t_game_info g);
+void			get_sprites_location(t_game_info g, t_user_view u,
+									 t_sprite **spr);
+t_spr_pos		get_camera_position(int i, t_sprite *sprites[],
+									t_user_view u, t_game_info g);
 	void		load_texture(void *mlx, char *path, t_image *img);
 
 #endif

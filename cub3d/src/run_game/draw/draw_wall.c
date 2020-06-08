@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:21:49 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 21:11:30 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 11:32:10 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	load_texture_img(void *mlx, t_game_info game_info,
 		load_texture(mlx, game_info.south, texture);
 }
 
-void	do_draw_wall(t_image img, t_texture tex_val, t_image tex_img,
-								 t_game_info *game_info, t_dda dda)
+void	do_draw_wall(t_image imgs[], t_texture tex_val,
+					t_game_info *game_info, t_dda dda)
 {
 	int val;
 	int y;
@@ -34,37 +34,40 @@ void	do_draw_wall(t_image img, t_texture tex_val, t_image tex_img,
 	y = dda.draw_start;
 	while (y < dda.draw_end)
 	{
-		tex_val.tex_y = (int)tex_val.tex_pos & (tex_img.h - 1);
+		tex_val.tex_y = (int)tex_val.tex_pos & (imgs[1].h - 1);
 		tex_val.tex_pos += tex_val.step;
-		val = *(tex_img.data + (tex_img.w * tex_val.tex_y) + tex_val.tex_x);
+		val = *(imgs[1].data + (imgs[1].w * tex_val.tex_y) + tex_val.tex_x);
 		if (tex_val.tex_x >= 0 && tex_val.tex_y >= 0)
-			*(img.data + (game_info->res[RES_W_IDX] * y) + dda.x) = val;
+			*(imgs[0].data + (game_info->res[RES_W_IDX] * y) + dda.x) = val;
 		y++;
 	}
 
 }
+												//  0: t_image *img, 1: t_dda *dda)
 
 void draw_wall(void *mlx, t_user_view user_view, t_game_info *game_info,
-												 t_image img, t_dda dda)
+													void *vals[])
 {
 	t_image		tex_img;
 	t_texture	tex_val;
 
-	load_texture_img(mlx, *game_info, &tex_img, dda);
-	tex_val.wall_x = dda.side == 0 ? user_view.pos_x + dda.perpwalldist
-													* dda.raydir_y
-									: user_view.pos_x + dda.perpwalldist
-													 * dda.raydir_x;
+	load_texture_img(mlx, *game_info, &tex_img, *(t_dda *)vals[1]);
+	tex_val.wall_x = ((t_dda *)vals[1])->side == 0 ? user_view.pos_x
+			+ ((t_dda *)vals[1])->perpwalldist * ((t_dda *)vals[1])->raydir_y
+				: user_view.pos_x + ((t_dda *)vals[1])->perpwalldist
+												* ((t_dda *)vals[1])->raydir_x;
 	tex_val.wall_x -= (int)tex_val.wall_x;
 	tex_val.tex_x = (int)(tex_val.wall_x * tex_img.w);
-	if (dda.side == 0 && dda.raydir_x > 0)
+	if (((t_dda *)vals[1])->side == 0 && ((t_dda *)vals[1])->raydir_x > 0)
 		tex_val.tex_x = tex_img.w - tex_val.tex_x - 1;
-	if (dda.side == 1 && dda.raydir_y < 0)
+	if (((t_dda *)vals[1])->side == 1 && ((t_dda *)vals[1])->raydir_y < 0)
 		tex_val.tex_x = tex_img.w - tex_val.tex_x - 1;
 	tex_val.tex_x = tex_val.tex_x < 0 ? 0 : tex_val.tex_x;
-	tex_val.step = 1.0 * tex_img.h / dda.line_h;
-	tex_val.tex_pos = (dda.draw_start - game_info->res[RES_H_IDX] / 2
-										+ dda.line_h / 2) * tex_val.step;
-	do_draw_wall(img, tex_val, tex_img, game_info, dda);
+	tex_val.step = 1.0 * tex_img.h / ((t_dda *)vals[1])->line_h;
+	tex_val.tex_pos = (((t_dda *)vals[1])->draw_start
+					- game_info->res[RES_H_IDX] / 2
+					+ ((t_dda *)vals[1])->line_h / 2) * tex_val.step;
+	do_draw_wall((t_image[]){*(t_image*)vals[0], tex_img},
+					tex_val, game_info, *(t_dda *)vals[1]);
 	mlx_destroy_image (mlx, tex_img.ptr);
 }
