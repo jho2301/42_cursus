@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   read_cub.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:13:17 by hjeon             #+#    #+#             */
-/*   Updated: 2020/04/17 19:13:17 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 10:33:25 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ int				set_type_info(char type, char *line, t_game_info *game_info);
 int				set_type_info_res(char *line, t_game_info *game_info);
 int				set_type_info_ceilling(char *line, t_game_info *game_info);
 int				set_type_info_floor(char *line, t_game_info *game_info);
-int				set_type_info_nswes(char type, char *line, t_game_info *game_info);
+int				set_type_info_nswes(char type, char *line,
+									t_game_info *game_info);
 int				get_type(int fd, t_game_info *game_info);
 char			check_type(char *line, t_game_info *game_info);
 int				get_map_widthy(int fd, t_game_info *game_info);
 int				get_map(int fd, t_game_info *game_info);
 int				check_map(t_game_info *game_info);
-
-
 
 #endif

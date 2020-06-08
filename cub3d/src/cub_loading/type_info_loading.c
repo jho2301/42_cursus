@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 21:30:19 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 21:45:03 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 10:43:36 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,27 +122,25 @@ int		set_type_info_res(char *line, t_game_info *game_info)
 
 int		set_type_info(char type, char *line, t_game_info *game_info)
 {
-	t_bool errchk;
-
 	if (type == 'N' || type == 'S' || type == 'W'
-	 || type == 'E' || type == 's')
+		|| type == 'E' || type == 's')
 	{
-		if ((errchk = set_type_info_nswes(type, line + 2, game_info)) == ERROR)
+		if (set_type_info_nswes(type, line + 2, game_info) == ERROR)
 			return (ERROR);
 	}
 	else if (type == 'R')
 	{
-		if ((errchk = set_type_info_res(line + 1, game_info)) == ERROR)
+		if (set_type_info_res(line + 1, game_info) == ERROR)
 			return (ERROR);
 	}
 	else if (type == 'F')
 	{
-		if ((errchk = set_type_info_floor(line + 1, game_info)) == ERROR)
+		if (set_type_info_floor(line + 1, game_info) == ERROR)
 			return (ERROR);
 	}
 	else if (type == 'C')
 	{
-		if ((errchk = set_type_info_ceilling(line + 1, game_info)) == ERROR)
+		if (set_type_info_ceilling(line + 1, game_info) == ERROR)
 			return (ERROR);
 	}
 	else

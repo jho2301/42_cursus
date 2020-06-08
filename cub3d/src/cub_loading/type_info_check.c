@@ -6,12 +6,11 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 21:23:09 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 22:39:01 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 10:35:27 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read_cub.h"
-
 
 int		get_type(int fd, t_game_info *game_info)
 {
@@ -45,7 +44,7 @@ char	check_type(char *line, t_game_info *game_info)
 {
 	if (*line == 'N' && *(line + 1) == 'O')
 		return (!game_info->north ? 'N' : ERROR);
-	else if (*line == 'S' &&  *(line + 1) == 'O')
+	else if (*line == 'S' && *(line + 1) == 'O')
 		return (!game_info->south ? 'S' : ERROR);
 	else if (*line == 'W' && *(line + 1) == 'E')
 		return (!game_info->west ? 'W' : ERROR);

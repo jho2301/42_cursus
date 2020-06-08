@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   util.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/08 10:54:15 by hjeon             #+#    #+#             */
+/*   Updated: 2020/06/08 10:56:17 by hjeon            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
-# include <unistd.h>
-# include "libft.h"
+#include "libft.h"
 
 void	exit_with_errmsg(char *errmsg)
 {
@@ -22,7 +33,7 @@ void	check_argc(int argc)
 
 int		check_screenshot_option(int argc, char *option_str)
 {
-	if (argc == 3 && !ft_strncmp("--save" , option_str, 6))
+	if (argc == 3 && !ft_strncmp("--save", option_str, 6))
 		return (TRUE);
 	else
 		return (FALSE);
@@ -59,6 +70,5 @@ char	*supreme_cat(char *dst, char *src, int size)
 	ft_stcat(result, dst, dst_len);
 	ft_stcat(result, src, size);
 	free(dst);
-	// free(src);
 	return (result);
 }

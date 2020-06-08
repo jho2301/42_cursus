@@ -8,7 +8,7 @@ MiniLibX - Manipulating images
 .fi
 .B mlx_new_image
 (
-.I void *mlx_ptr, int w, int h
+.I void *mlx_ptr, int width, int height
 );
 
 .nf
@@ -40,7 +40,7 @@ MiniLibX - Manipulating images
 .fi
 .B mlx_xpm_to_image
 (
-.I void *mlx_ptr, char **xpm_data, int *w, int *h
+.I void *mlx_ptr, char **xpm_data, int *width, int *height
 );
 
 .nf
@@ -48,7 +48,15 @@ MiniLibX - Manipulating images
 .fi
 .B mlx_xpm_file_to_image
 (
-.I void *mlx_ptr, char *filename, int *w, int *h
+.I void *mlx_ptr, char *filename, int *width, int *height
+);
+
+.nf
+.I void *
+.fi
+.B mlx_png_file_to_image
+(
+.I void *mlx_ptr, char *filename, int *width, int *height
 );
 
 .nf
@@ -67,9 +75,9 @@ MiniLibX - Manipulating images
 .I void *
 identifier needed to manipulate this image later. It only needs
 the size of the image to be created, using the
-.I w
+.I width
 and
-.I h
+.I height
 parameters, and the
 .I mlx_ptr
 connection identifier (see the
@@ -141,7 +149,7 @@ one byte for each component (see
 .B mlx_pixel_put
 manual). This must be translated to fit the
 .I bits_per_pixel
-requirement of the image, and make the color understandable to the X-Server.
+requirement of the image, and make the color understandable to the display.
 That is the purpose of the
 .B mlx_get_color_value
 () function. It takes a standard RGB
@@ -151,19 +159,23 @@ parameter, and returns an
 value.
 The
 .I bits_per_pixel
-least significant bits of this value can be stored in the image.
+least significant bits of this value can be stored in the image. You can
+avoid using this function if there is no conversion needed (eg. in case of
+24 bits depth, or 32 bits depth).
 
 Keep in mind that the least significant bits position depends on the local
-computer's endian. If the endian of the image (in fact the endian of
-the X-Server's computer) differs from the local endian, then the value should
+computer's endian. If the endian of the image differs from the local endian
+(which shoud only occurs in a X11 network environment), then the value should
 be transformed before being used.
 
-.SH XPM IMAGES
+.SH XPM AND PNG IMAGES
 
 The
 .B mlx_xpm_to_image
-() and
+() ,
 .B mlx_xpm_file_to_image
+() and
+.B mlx_png_file_to_image
 () functions will create a new image the same way.
 They will fill it using the specified
 .I xpm_data
@@ -171,16 +183,18 @@ or
 .I filename
 , depending on which function is used.
 Note that MiniLibX does not use the standard
-Xpm library to deal with xpm images. You may not be able to
-read all types of xpm images. It however handles transparency.
+Xpm and png libraries to deal with xpm and png images. You may not be able to
+read all types of xpm and png images. It however handles transparency.
 
 .SH RETURN VALUES
-The three functions that create images,
+The four functions that create images,
 .B mlx_new_image()
 ,
 .B mlx_xpm_to_image()
-and
+,
 .B mlx_xpm_file_to_image()
+and
+.B mlx_png_file_to_image()
 , will return NULL if an error occurs. Otherwise they return a non-null pointer
 as an image identifier.
 
@@ -189,4 +203,4 @@ as an image identifier.
 mlx(3), mlx_new_window(3), mlx_pixel_put(3), mlx_loop(3)
 
 .SH AUTHOR
-Copyright ol@ - 2002-2014 - Olivier Crouzet
+Copyright ol@ - 2002-2019 - Olivier Crouzet

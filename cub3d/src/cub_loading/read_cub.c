@@ -6,12 +6,11 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:13:25 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 22:32:23 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 10:34:44 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read_cub.h"
-
 
 t_bool		still_has_line(int fd)
 {
@@ -26,7 +25,6 @@ t_bool		still_has_line(int fd)
 	return (FALSE);
 }
 
-
 int			open_cub_file(char *path)
 {
 	int		fd;
@@ -36,7 +34,7 @@ int			open_cub_file(char *path)
 		exit_with_errmsg("no path.");
 	len = ft_strlen(path);
 	if (path[len - 4] != '.' || path[len - 3] != 'c' ||
-		path[len - 2] != 'u' || path[len - 1] != 'b' )
+		path[len - 2] != 'u' || path[len - 1] != 'b')
 		exit_with_errmsg("please enter the right extension.");
 	if ((fd = open(path, O_RDONLY)) == ERROR)
 		exit_with_errmsg(strerror(errno));

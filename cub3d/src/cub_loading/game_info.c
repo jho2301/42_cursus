@@ -6,15 +6,15 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:13:22 by hjeon             #+#    #+#             */
-/*   Updated: 2020/04/17 19:13:22 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 10:32:28 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read_cub.h"
 
-t_game_info	init_game_info()
+t_game_info	init_game_info(void)
 {
-	t_game_info		game_info;
+	t_game_info game_info;
 
 	game_info.res = 0;
 	game_info.east = 0;
@@ -30,9 +30,10 @@ t_game_info	init_game_info()
 	return (game_info);
 }
 
-void	free_game_info(t_game_info *game_info)
+void		free_game_info(t_game_info *game_info)
 {
 	int i;
+
 	if (!game_info->ceilling)
 		free(game_info->ceilling);
 	if (!game_info->floor)

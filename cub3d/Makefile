@@ -1,6 +1,7 @@
 CC = gcc
 CFLAGS =	 -I.src/run_game/minilibx
 LINUXLIB =	-lmlx -lXext -lX11 -l bsd
+MACLIB = -lmlx -framework OpenGL -framework AppKit -lz
 3W = -Wextra -Wall -Werror
 
 NAME= cub3D
@@ -13,7 +14,7 @@ DEBUG = -g
 all	:$(NAME)
 
 $(NAME)	:	$(OBJ)
-				$(CC) -o $(NAME) $(OBJ) $(LIBFT) $(LINUXLIB) -fPIE $(DEBUG) $(3W)
+				$(CC) -o $(NAME) $(OBJ) $(LIBFT) $(MACLIB) -fPIE $(DEBUG) $(3W)
 
 clean	:
 				rm -f $(NAME) $(OBJ)

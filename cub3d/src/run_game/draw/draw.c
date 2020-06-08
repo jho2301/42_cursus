@@ -6,13 +6,13 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:13:57 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 20:30:18 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 10:59:36 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../run_game.h"
+int		g_is_updated = FALSE;
 
-int		is_updated = FALSE;
+#include "../run_game.h"
 
 void	do_draw(void *mlx, void *window, t_game_info *game_info,
 				t_user_view user_view, t_bool screenshot)
@@ -51,11 +51,10 @@ int		draw(void **infos)
 	mlx = infos[2];
 	window = infos[3];
 	screenshot = *(int *)infos[4];
-	if (!is_updated)
+	if (!g_is_updated)
 	{
 		do_draw(mlx, window, game_info, user_view, screenshot);
-		is_updated = TRUE;
+		g_is_updated = TRUE;
 	}
 	return (0);
 }
-
