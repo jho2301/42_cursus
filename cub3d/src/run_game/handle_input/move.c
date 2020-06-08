@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 10:35:02 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 21:22:07 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 14:38:46 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_bool	check_move(char map_value)
 {
 	if (map_value == '0' ||
-		map_value == 'N'||
-		map_value == 'S'||
-		map_value == 'W'||
+		map_value == 'N' ||
+		map_value == 'S' ||
+		map_value == 'W' ||
 		map_value == 'E')
 		return (TRUE);
 	return (FALSE);
@@ -91,10 +91,10 @@ void	move_leftward(t_game_info g, t_user_view *u)
 	p_y = u->pos_y;
 	d_x = u->dir_x;
 	d_y = u->dir_y;
-		if (0 < (int)(p_y - d_x)
-			&& check_move(*(*(g.map + (int)(p_y - d_x)) + (int)p_x)))
-			u->pos_y -= u->dir_x;
-		if (0 < (int)(p_x + d_y)
-			&& check_move(*(*(g.map + (int)p_y) + (int)(p_x + d_y))))
-			u->pos_x += u->dir_y;
+	if (0 < (int)(p_y - d_x)
+		&& check_move(*(*(g.map + (int)(p_y - d_x)) + (int)p_x)))
+		u->pos_y -= u->dir_x;
+	if (0 < (int)(p_x + d_y)
+		&& check_move(*(*(g.map + (int)p_y) + (int)(p_x + d_y))))
+		u->pos_x += u->dir_y;
 }
