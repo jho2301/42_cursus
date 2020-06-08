@@ -6,33 +6,11 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:07:26 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 21:09:31 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 14:00:00 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../run_game.h"
-
-typedef struct	s_bfh {
-	unsigned char   bitmap_type[2];
-	int             file_size;
-	short           reserved1;
-	short           reserved2;
-	unsigned int    offset_bits;
-}				t_bfh;
-
-typedef struct		t_bih {
-	unsigned int    size_header;
-	unsigned int    w;
-	unsigned int    h;
-	short int       planes;
-	short int       bit_count;
-	unsigned int    compression;
-	unsigned int    image_size;
-	unsigned int    ppm_x;
-	unsigned int    ppm_y;
-	unsigned int    clr_used;
-	unsigned int    clr_important;
-}					t_bih;
 
 t_bfh init_bfh(t_game_info *game_info)
 {
