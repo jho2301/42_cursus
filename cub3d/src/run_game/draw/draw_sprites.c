@@ -6,14 +6,14 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:06:06 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 11:36:39 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 13:54:03 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../run_game.h"
 
 void	do_draw_sprites(t_spr_pos spr_pos, t_game_info game_info,
-						 t_image *imgs[], double z_buffer[])
+						t_image *imgs[], double z_buffer[])
 {
 	int	tex_x;
 	int	tex_y;
@@ -49,21 +49,24 @@ void	draw_sprites(void *ptrs[], t_game_info game_info,
 		t_image		spr_img;
 		t_sprite	**sprs;
 		t_spr_pos	spr_pos;
+		int			i;
 
+		i = -1;
 		num_sprites = get_num_sprites(game_info);
 		sprs = malloc(sizeof(t_sprite *) * num_sprites);
-		for (int i = 0; i < num_sprites; i++)
+		while (++i < num_sprites)
 			*(sprs + i) = malloc(sizeof(t_sprite));
 		load_texture(ptrs[0], game_info.sprite, &spr_img);
 		get_sprites_location(game_info, user_view, sprs);
 		sort_sprites(sprs, num_sprites);
-		for (int i = 0; i < num_sprites; i++)
+		i = -1;
+		while (++i < num_sprites)
 		{
 			spr_pos = get_camera_position(i, sprs, user_view, game_info);
 			do_draw_sprites(spr_pos,
-				game_info, (t_image[]){&spr_img, (t_image*)ptrs[1]}, z_buffer);
+				game_info, (t_image*[]){&spr_img, (t_image*)ptrs[1]}, z_buffer);
 		}
-		for (int i = 0; i < num_sprites; i++)
+		while (0 <= --i)
 			free(*(sprs + i));
 		free(sprs);
 		mlx_destroy_image(ptrs[0], spr_img.ptr);

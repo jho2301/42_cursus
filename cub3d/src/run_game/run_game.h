@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:13:12 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 13:24:46 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 13:31:12 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct	s_sprite_position
 	int			draw_end_x;
 }				t_spr_pos;
 
-
 typedef struct	s_texture
 {
 	int			tex_x;
@@ -82,13 +81,13 @@ typedef struct	s_user_view
 {
 	double		pos_x;
 	double		pos_y;
-    double		dir_x;
+	double		dir_x;
 	double		dir_y;
-    double		plane_x;
+	double		plane_x;
 	double		plane_y;
 }				t_user_view;
 
-typedef struct s_image
+typedef struct	s_image
 {
 	void		*ptr;
 	int			*data;
@@ -112,13 +111,13 @@ int				handle_input(int keycode, void **infos);
 int				draw(void **infos);
 void			get_user_info(t_game_info *game_info, t_user_view *user_view);
 void			draw_floor_ceiling(t_game_info *game_info,
-									 void *mlx_ptr, t_image *img);
+								void *mlx_ptr, t_image *img);
 void			draw_wall(void *mlx, t_user_view user_view,
 							t_game_info *game_info, void *vals[]);
 void			draw_sprites(void *ptrs[], t_game_info game_info,
-							 t_user_view user_view, double ZBuffer[]);
+							t_user_view user_view, double z_buffer[]);
 t_dda			raycast(t_game_info *game_info, t_user_view user_view,
-						 double ZBuffer[], int x);
+							double z_buffer[], int x);
 void			move_rightward(t_game_info g, t_user_view *u);
 void			move_leftward(t_game_info g, t_user_view *u);
 void			move_backward(t_game_info g, t_user_view *u);
@@ -128,9 +127,9 @@ void			turn_left(t_user_view *u);
 void			sort_sprites (t_sprite *sprites[], int num_sprites);
 int				get_num_sprites (t_game_info game_info);
 void			get_sprites_location(t_game_info g, t_user_view u,
-									 t_sprite **spr);
+										t_sprite **spr);
 t_spr_pos		get_camera_position(int i, t_sprite *sprites[],
 									t_user_view u, t_game_info g);
-	void		load_texture(void *mlx, char *path, t_image *img);
+void			load_texture(void *mlx, char *path, t_image *img);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 20:23:57 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 21:09:42 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 13:37:03 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../run_game.h"
 
-void	sort_sprites (t_sprite *sprites[], int num_sprites)
+void		sort_sprites(t_sprite *sprites[], int num_sprites)
 {
 	int			i;
 	int			j;
@@ -34,7 +34,7 @@ void	sort_sprites (t_sprite *sprites[], int num_sprites)
 	}
 }
 
-int		get_num_sprites (t_game_info game_info)
+int			get_num_sprites(t_game_info game_info)
 {
 	int		num_sprites;
 	int		j;
@@ -52,7 +52,7 @@ int		get_num_sprites (t_game_info game_info)
 	return (num_sprites);
 }
 
-void	get_sprites_location(t_game_info g, t_user_view u, t_sprite **spr)
+void		get_sprites_location(t_game_info g, t_user_view u, t_sprite **spr)
 {
 	int	i;
 	int j;
@@ -86,20 +86,21 @@ t_spr_pos	get_camera_position(int i, t_sprite *sprites[],
 	s.spr_x = sprites[i]->x - u.pos_x + 0.5;
 	s.spr_y = sprites[i]->y - u.pos_y + 0.5;
 	s.inv_det = 1.0 / (u.plane_x * u.dir_y - u.dir_x * u.plane_y);
-	s.trans_x = s.inv_det * ( u.dir_y * s.spr_x - u.dir_x * s.spr_y);
+	s.trans_x = s.inv_det * (u.dir_y * s.spr_x - u.dir_x * s.spr_y);
 	s.trans_y = s.inv_det * (-u.plane_y * s.spr_x + u.plane_x * s.spr_y);
 	s.spr_screen_x = (int)((g.res[RES_W_IDX] / 2)
-						 * (1 + s.trans_x / s.trans_y));
+						* (1 + s.trans_x / s.trans_y));
 	s.spr_h = abs((int)(g.res[RES_H_IDX] / (s.trans_y)));
 	s.draw_start_y = -s.spr_h / 2 + g.res[RES_H_IDX] / 2;
 	if (s.draw_start_y < 0)
 		s.draw_start_y = 0;
 	s.draw_end_y = s.spr_h / 2 + g.res[RES_H_IDX] / 2;
-	if (s.draw_end_y >=  g.res[RES_H_IDX])
-		s.draw_end_y =  g.res[RES_H_IDX] - 1;
-	s.spr_w = abs((int) (g.res[RES_H_IDX] / (s.trans_y)));
+	if (s.draw_end_y >= g.res[RES_H_IDX])
+		s.draw_end_y = g.res[RES_H_IDX] - 1;
+	s.spr_w = abs((int)(g.res[RES_H_IDX] / (s.trans_y)));
 	s.draw_start_x = -s.spr_w / 2 + s.spr_screen_x;
-	if (s.draw_start_x < 0) s.draw_start_x = 0;
+	if (s.draw_start_x < 0)
+		s.draw_start_x = 0;
 	s.draw_end_x = s.spr_w / 2 + s.spr_screen_x;
 	if (s.draw_end_x >= g.res[RES_W_IDX])
 		s.draw_end_x = g.res[RES_W_IDX] - 1;

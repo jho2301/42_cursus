@@ -6,14 +6,14 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:21:49 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 11:32:10 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 13:39:52 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../run_game.h"
 
 void	load_texture_img(void *mlx, t_game_info game_info,
-						 t_image *texture, t_dda dda)
+							t_image *texture, t_dda dda)
 {
 	if (dda.side == 0 && dda.raydir_x < 0)
 		load_texture(mlx, game_info.west, texture);
@@ -41,11 +41,9 @@ void	do_draw_wall(t_image imgs[], t_texture tex_val,
 			*(imgs[0].data + (game_info->res[RES_W_IDX] * y) + dda.x) = val;
 		y++;
 	}
-
 }
-												//  0: t_image *img, 1: t_dda *dda)
 
-void draw_wall(void *mlx, t_user_view user_view, t_game_info *game_info,
+void	draw_wall(void *mlx, t_user_view user_view, t_game_info *game_info,
 													void *vals[])
 {
 	t_image		tex_img;
@@ -69,5 +67,5 @@ void draw_wall(void *mlx, t_user_view user_view, t_game_info *game_info,
 					+ ((t_dda *)vals[1])->line_h / 2) * tex_val.step;
 	do_draw_wall((t_image[]){*(t_image*)vals[0], tex_img},
 					tex_val, game_info, *(t_dda *)vals[1]);
-	mlx_destroy_image (mlx, tex_img.ptr);
+	mlx_destroy_image(mlx, tex_img.ptr);
 }

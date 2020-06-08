@@ -6,11 +6,9 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:13:57 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 11:38:55 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 13:35:13 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int		g_is_updated = 0;
 
 #include "../run_game.h"
 
@@ -20,13 +18,15 @@ void	do_draw(void *ptrs[], t_game_info *game_info,
 	t_image		img;
 	t_dda		dda;
 	double		z_buffer[game_info->res[RES_W_IDX]];
+	int			x;
 
 	img.ptr = mlx_new_image(ptrs[0], game_info->res[RES_W_IDX],
-							 game_info->res[RES_H_IDX]);
+							game_info->res[RES_H_IDX]);
 	img.data = (int *)mlx_get_data_addr(img.ptr, &img.bpp,
 										&img.sizeline, &img.endian);
 	draw_floor_ceiling(game_info, ptrs[0], &img);
-	for(int x = 0; x < game_info->res[RES_W_IDX]; x++)
+	x = -1;
+	while (++x < game_info->res[RES_W_IDX])
 	{
 		dda = raycast(game_info, user_view, z_buffer, x);
 		draw_wall(ptrs[0], user_view, game_info,
@@ -39,6 +39,8 @@ void	do_draw(void *ptrs[], t_game_info *game_info,
 	mlx_put_image_to_window(ptrs[0], ptrs[1], img.ptr, 0, 0);
 	mlx_destroy_image(ptrs[0], img.ptr);
 }
+
+int		g_is_updated = 0;
 
 int		draw(void **infos)
 {

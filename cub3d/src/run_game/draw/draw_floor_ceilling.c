@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:17:25 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 20:27:54 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 13:38:16 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	draw_floor_ceiling(t_game_info *game_info, void *mlx_ptr, t_image *img)
 	int		h;
 
 	floor_color = game_info->floor[2] + game_info->floor[1] * 256
-									 + game_info->floor[0] * 256 * 256;
+									+ game_info->floor[0] * 256 * 256;
 	ceilling_color = game_info->ceilling[2] + game_info->ceilling[1] * 256
 										+ game_info->ceilling[0] * 256 * 256;
 	w = -1;

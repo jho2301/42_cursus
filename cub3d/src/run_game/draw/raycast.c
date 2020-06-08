@@ -6,7 +6,7 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 21:09:53 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/07 21:15:04 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 13:37:53 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	do_dda(t_game_info *game_info, t_user_view u, t_dda *dda)
 {
 	while (dda->hit == 0)
 	{
-		if(dda->sidedist_x < dda->sidedist_y)
+		if (dda->sidedist_x < dda->sidedist_y)
 		{
 			dda->sidedist_x += dda->deltadist_x;
 			dda->map_x += dda->step_x;
@@ -74,7 +74,7 @@ void	do_dda(t_game_info *game_info, t_user_view u, t_dda *dda)
 	}
 	if (dda->side == 0)
 		dda->perpwalldist = (dda->map_x - u.pos_x + (1 - dda->step_x) / 2)
-															 / dda->raydir_x;
+														/ dda->raydir_x;
 	else
 		dda->perpwalldist = (dda->map_y - u.pos_y + (1 - dda->step_y) / 2)
 															/ dda->raydir_y;
@@ -84,10 +84,10 @@ void	get_dda_draw_data(t_game_info *game_info, t_dda *dda)
 {
 	dda->line_h = (int)(game_info->res[RES_H_IDX] / dda->perpwalldist);
 	dda->draw_start = -dda->line_h / 2 + game_info->res[RES_H_IDX] / 2;
-	if(dda->draw_start < 0)
+	if (dda->draw_start < 0)
 		dda->draw_start = 0;
 	dda->draw_end = (dda->line_h / 2) + (game_info->res[RES_H_IDX] / 2);
-	if(dda->draw_end >= game_info->res[RES_H_IDX])
+	if (dda->draw_end >= game_info->res[RES_H_IDX])
 		dda->draw_end = game_info->res[RES_H_IDX] - 1;
 }
 
