@@ -1,4 +1,6 @@
 # Libasm
+
+https://github.com/gurugio/book_assembly_8086_ko/raw/master/assets/cpu.gif
 ## 레지스터 종류
 - ax (acumulator): 적산하는 레지스터
 - bx (base address):  메모리 주소 계산 레지스터
