@@ -37,7 +37,7 @@
 
 - Direction Flag (DF) - 이 플래그는 명령어에 의해 data chain이 처리 될때 사용된다. 프로세싱이 메모리 앞 번지에서 뒷번지로 진행될때는 0로 설정되고 프로세싱이 메모리 뒷번지에서 앞번지로 진행 될때는 1로 설정된다.
 
-## 연산:opcode
+## 연산 : opcode
 - test -  레지스터의 값은 바꾸지 않는 and. 플래그 레지스터값만 바뀐다.
 - mul - 부호를 고려하지 않는 곱하기 (16비트 * 16비트 = 32비트 이므로 연산 시, 보이지 않는 레지스터를 추가로 사용함)
 - imul - 부호를 생각하는 곱하기
@@ -56,3 +56,27 @@
 |jns|    부호 비트가 0일 때 점프  |  sf=0  |  js | 
 |jno|    오버플로우가 아닐 때 점프  |  of=0  |  jo  |
 |jpo, jnp|    Parity Odd 상태일 때 점프 |   pf=0  |  jpe, jp  |
+
+부호있는 숫자들을 비교해서 점프하는 명령어는 다음 테이블에 있습니다.
+
+|명령어  |  설명   | 조건  |  반대 명령어  |
+| :--- | :---   | :---  | :--- |
+|JE , JZ |   Jump if Equal \(=\). Jump if Zero.  |  ZF = 1   | JNE, JNZ  |
+|JNE , JNZ |   Jump if Not Equal \(&lt;&gt;\). Jump if Not Zero.  |  ZF = 0  |  JE, JZ  |
+|JG , JNLE |   Jump if Greater \(&gt;\). Jump if Not Less or Equal \(not &lt;=\).   | ZF = 0 and SF = OF  |  JNG, JLE  |
+|JL , JNGE |   Jump if Less \(&lt;\). Jump if Not Greater or Equal \(not &gt;=\).  |  SF &lt;&gt; OF  |  JNL, JGE  |
+|JGE , JNL |   Jump if Greater or Equal \(&gt;=\). Jump if Not Less \(not &lt;\).  |  SF = OF   | JNGE, JL  |
+|JLE , JNG |   Jump if Less or Equal \(&lt;=\). Jump if Not Greater \(not &gt;\).  |  ZF = 1 or SF &lt;&gt; OF   | JNLE, JG|
+
+&lt;&gt;는 같지 않다는 표시입니다. 별로 설명하게 없습니다. 크냐 작냐 뿐이니까요. 참고로 크지 않다는 작거나 같다는 것이고 작지 않다는 크거나 같다는 것입니다. &gt; 의 반대는 &lt;= 이라는거 당연하지만 가끔 =을 빼먹으면 골치아픈 버그가 생깁니다.
+
+##부호없는 숫자를 비교해서 점프하기
+
+|명령어  |  설명   | 조건  |  반대 명령어  |
+| :--- | :---   | :---  | :--- |
+|JE , JZ    |Jump if Equal \(=\). Jump if Zero.  |  ZF = 1  |  JNE, JNZ  |
+|JNE , JNZ   | Jump if Not Equal \(&lt;&gt;\). Jump if Not Zero.  |  ZF = 0  |  JE, JZ  |
+|JA , JNBE  |  Jump if Above \(&gt;\). Jump if Not Below or Equal \(not &lt;=\).  |  CF = 0 and ZF = 0  |  JNA, JBE | 
+|JB , JNAE, JC  |  Jump if Below \(&lt;\). Jump if Not Above or Equal \(not &gt;=\). Jump if Carry.   | CF = 1  |  JNB, JAE, JNC  |
+|JAE , JNB, JNC  |  Jump if Above or Equal \(&gt;=\). Jump if Not Below \(not &lt;\). Jump if Not Carry.   | CF = 0  |  JNAE, JB  |
+|JBE , JNA  |  Jump if Below or Equal \(&lt;=\). Jump if Not Above \(not &gt;\).  |  CF = 1 or ZF = 1  |  JNBE, JA|
