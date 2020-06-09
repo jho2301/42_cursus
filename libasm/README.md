@@ -1,7 +1,7 @@
 # Libasm
 
-![](https://github.com/gurugio/book_assembly_8086_ko/raw/master/assets/cpu.gif)
 ## 레지스터
+![](https://github.com/gurugio/book_assembly_8086_ko/raw/master/assets/cpu.gif)
 - ax (acumulator): 적산하는 레지스터
 - bx (base address):  메모리 주소 계산 레지스터
 - cx (counter): 반복문 카운팅시 사용 (5번반복 -> 5, 4, 3, 2, 1)
@@ -41,3 +41,4 @@
 - test -  레지스터의 값은 바꾸지 않는 and. 플래그 레지스터값만 바뀐다.
 - mul - 부호를 고려하지 않는 곱하기 (16비트 * 16비트 = 32비트 이므로 연산 시, 보이지 않는 레지스터를 추가로 사용함)
 - imul - 부호를 생각하는 곱하기
+- cmp - 레지스터의 값은 바꾸지 않는 sub. 플래그 레지스터 값만 바꾼다.
