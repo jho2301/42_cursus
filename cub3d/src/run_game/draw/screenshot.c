@@ -6,33 +6,33 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 17:07:26 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/08 14:00:00 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/08 16:10:12 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../run_game.h"
 
-t_bfh init_bfh(t_game_info *game_info)
+t_bfh	init_bfh(t_game_info *game_info)
 {
-	t_bfh bfh;
-	int image_size;
-	int file_size;
+	t_bfh	bfh;
+	int		image_size;
+	int		file_size;
 
 	image_size = game_info->res[RES_W_IDX] * game_info->res[RES_H_IDX];
 	file_size = 54 + 4 * image_size;
 	ft_memcpy(&bfh.bitmap_type, "BM", 2);
-	bfh.file_size       = file_size;
-	bfh.reserved1       = 0;
-	bfh.reserved2       = 0;
-	bfh.offset_bits     = 0;
-	return(bfh);
+	bfh.file_size = file_size;
+	bfh.reserved1 = 0;
+	bfh.reserved2 = 0;
+	bfh.offset_bits = 0;
+	return (bfh);
 }
 
-t_bih init_bih(t_game_info *game_info)
+t_bih	init_bih(t_game_info *game_info)
 {
-	t_bih bih;
-	int image_size;
-	int file_size;
+	t_bih	bih;
+	int		image_size;
+	int		file_size;
 
 	image_size = game_info->res[RES_W_IDX] * game_info->res[RES_H_IDX];
 	file_size = 54 + 4 * image_size;
@@ -58,7 +58,7 @@ void	take_screenshot(t_image *img, t_game_info *game_info)
 	int				image_fd;
 	unsigned char	color[3];
 
-	image_fd = open("./screenshot.bpm", O_RDWR | O_CREAT);
+	image_fd = open("./screenshot.bmp", O_RDWR | O_CREAT);
 	bfh = init_bfh(game_info);
 	bih = init_bih(game_info);
 	write(image_fd, &bfh, 14);
@@ -66,9 +66,9 @@ void	take_screenshot(t_image *img, t_game_info *game_info)
 	i = -1;
 	while (++i < game_info->res[RES_W_IDX] * game_info->res[RES_H_IDX])
 	{
-		color[0]  = *(img->data + i) / (256 * 256);
+		color[2] = *(img->data + i) / (256 * 256);
 		color[1] = *(img->data + i) / 256;
-		color[2]  = *(img->data + i);
+		color[0] = *(img->data + i);
 		write(image_fd, color, sizeof(color));
 	}
 	close(image_fd);

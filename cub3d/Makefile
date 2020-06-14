@@ -17,6 +17,9 @@ $(NAME)	:	$(OBJ)
 				$(CC) -o $(NAME) $(OBJ) $(LIBFT) $(MACLIB) -fPIE $(DEBUG) $(3W)
 
 clean	:
+				rm -f $(OBJ)
+
+fclean	:		
 				rm -f $(NAME) $(OBJ)
 
 re	: 		clean all
