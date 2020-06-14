@@ -2,7 +2,7 @@
 # ./asm_tester.sh {test/???.c} {arg1} {arg2}
 
 make re
-gcc test/$1.c libasm.a
+gcc -fPIE test/$1.c -fPIE libasm.a -fPIE
 make fclean
 echo "\nresult"
 echo "----------------------"

@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/15 07:29:10 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/15 07:36:31 by hjeon            ###   ########.fr       */
+/*   Created: 2020/06/15 07:29:04 by hjeon             #+#    #+#             */
+/*   Updated: 2020/06/15 08:52:19 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <string.h>
+#include <stdio.h>
+#include <error.h>
+#include <stdlib.h>
+#include <errno.h>
 
-ssize_t	ft_write(int fd, const void *buf, size_t count);
+char	*ft_strdup(const char *s);
 
 int		main(int argc, char *argv[])
 {
-	int	fd1;
-	int	fd2;
-	int	len;
+	char 	*dest1;
+	char	*dest2;
 
-	fd1 = open("./original.txt", O_WRONLY | O_CREAT);
-	fd2 = open("./ft_write.txt", O_WRONLY | O_CREAT);
-	len = strlen(argv[1]);
-	printf("original	: %ld\n", write(fd1, argv[1], len));
-	printf("ft_write	: %ld\n", ft_write(fd2, argv[1], len));
-	return (0);
+	dest1 = strdup(argv[1]);
+	printf("original	: %s\n", dest1);
+	free(dest1);
+	dest2 = ft_strdup(argv[1]);
+	printf("ft_strdup	: %s\n", dest2);
+	free(dest2);
 }
