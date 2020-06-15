@@ -1,8 +1,8 @@
 segment .text
 
-global ft_strlen
+global _ft_strlen
 
-ft_strlen:
+_ft_strlen:
 	mov rax, 0
 compare:
 	cmp byte [rdi+rax], 0

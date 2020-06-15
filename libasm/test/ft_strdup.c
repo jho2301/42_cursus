@@ -6,15 +6,13 @@
 /*   By: hjeon <hjeon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 07:29:04 by hjeon             #+#    #+#             */
-/*   Updated: 2020/06/15 08:52:19 by hjeon            ###   ########.fr       */
+/*   Updated: 2020/06/15 09:25:42 by hjeon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
-#include <error.h>
 #include <stdlib.h>
-#include <errno.h>
 
 char	*ft_strdup(const char *s);
 

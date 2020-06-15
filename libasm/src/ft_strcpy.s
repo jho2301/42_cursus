@@ -1,7 +1,7 @@
 segment .text
-global ft_strcpy
+global _ft_strcpy
 
-ft_strcpy:
+_ft_strcpy:
 	mov rax, 0
 continue:
 	cmp byte[rsi+rax], 0

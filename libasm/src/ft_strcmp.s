@@ -1,7 +1,7 @@
 segment .text
-global ft_strcmp
+global _ft_strcmp
 
-ft_strcmp:
+_ft_strcmp:
 	mov rax, 0
 	mov rbx, 0
 	mov rcx, 0

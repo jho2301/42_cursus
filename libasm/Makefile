@@ -14,7 +14,7 @@ MAC_FORMAT =	-f macho64
 RM =	rm -f
 
 .s.o:		.s
-			${ASM} ${LINUX_FORMAT} $< -o $@
+			${ASM} ${MAC_FORMAT} $< -o $@
 
 all:		${NAME}
 

@@ -1,7 +1,6 @@
 segment .text
-extern malloc
-extern __errno
-global ft_strdup
+extern _malloc, ___error
+global _ft_strdup
 
 ft_strlen:
 	mov rax, 0
@@ -13,13 +12,39 @@ inc_cnt:
 	inc rax
 	jmp compare
 
-ft_strdup:
+ft_strcpy:
+	mov rax, 0
+continue:
+	cmp byte[rsi+rax], 0
+	je break
+	mov cl, byte[rsi+rax]                                                        
+	
+	mov byte[rdi+rax], cl
+	inc rax
+	jmp continue
+break:
+	mov byte[rdi+rax], 0
+	mov rax, rdi
+	ret
+
+_ft_strdup:
 	call ft_strlen
-	call malloc WRT ..plt
+	inc rax
+	push rdi
+	mov rdi, rax
+	call _malloc
 	cmp rax, 0
 	je error
+	mov rdi, rax
+	pop rsi
+	call ft_strcpy
 	ret
 error:
-	mov rax, __errno
+	push rax
+	call ___error
+	mov rbx, 0
+	pop rbx
+	mov [rax], rbx
+	mov rax, 0
 	ret
 
