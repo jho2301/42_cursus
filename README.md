@@ -5,7 +5,7 @@
 | Project           | Language | Description                                                  |     
 | ----------------- | -------- | ------------------------------------------------------------ | 
 | **Libft**         | C        | making my own c library `archiver - static library`          |     
-| **get_next_line** | C        | making `read` function `static variable` |     
+| **get_next_line** | C        | making file `read` function `static variable` |     
 | **netwhat**       |          | learning network knowledge. `network`, `OSI 7 layers`, `TCP/IP` |    
 | **ft_printf**     | C        | copying  `printf` in c. `Variable arguments`       |      
 | **ft_server**     |          | learning about docker & wordpress server `docker`,  `nginx`, `mysql`, `wordpress` |    
