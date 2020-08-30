@@ -10,6 +10,6 @@
 | **ft_printf**     | C        | copying  `printf` in c. `Variable arguments`       |      
 | **ft_server**     |          | learning about docker & wordpress server `docker`,  `nginx`, `mysql`, `wordpress` |    
 | **cub3d**         | C        | making 3d graphic engine like wolfenstein3D. `Raycasting`    |     
-| **libasm**        | asembley | learning assembly programming. `x86-64`                      |      
+| **libasm**        | assembley | learning assembly programming. `x86-64`                      |      
 | **minishell**     | C        | copying  `bash`shell with teammate `multi processing`, `teamwork` |     
 | **ft_services**   |          | learning kubernetes.                                         |     
